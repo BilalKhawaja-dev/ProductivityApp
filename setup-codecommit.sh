@@ -1,12 +1,16 @@
 #!/bin/bash
 
-# Setup script for AWS CodeCommit CI/CD Pipeline
-# This script helps migrate from GitHub to CodeCommit for the Productivity App
+# Setup script for Dual Repository CI/CD Pipeline
+# GitHub (main repo) + CodeCommit (AWS deployment)
+# This gives you the best of both worlds!
 
 set -e
 
-echo "🚀 Setting up AWS CodeCommit CI/CD Pipeline"
+echo "🚀 Setting up Dual Repository CI/CD Pipeline"
 echo "============================================="
+echo "📋 GitHub: Main repository (portfolio/LinkedIn)"
+echo "⚡ CodeCommit: AWS deployment pipeline"
+echo ""
 
 # Check if AWS CLI is configured
 if ! aws sts get-caller-identity &> /dev/null; then
@@ -70,43 +74,68 @@ if [ ! -d ".git" ]; then
     exit 1
 fi
 
-# Add CodeCommit as a remote
-echo "🔗 Adding CodeCommit as remote repository..."
-if git remote get-url codecommit &> /dev/null; then
-    echo "   Updating existing codecommit remote..."
-    git remote set-url codecommit "$CLONE_URL"
-else
-    echo "   Adding new codecommit remote..."
-    git remote add codecommit "$CLONE_URL"
+# Set up dual repository workflow
+echo "🔗 Setting up dual repository workflow..."
+
+# Ensure GitHub is the main origin
+if git remote get-url origin &> /dev/null; then
+    CURRENT_ORIGIN=$(git remote get-url origin)
+    if [[ "$CURRENT_ORIGIN" != *"github.com"* ]]; then
+        echo "   Renaming current origin to 'old-origin'..."
+        git remote rename origin old-origin
+    fi
 fi
 
-# Push current code to CodeCommit
-echo ""
-echo "📤 Pushing code to CodeCommit..."
-echo "   Note: This will trigger the CI/CD pipeline automatically!"
+# Add GitHub as origin if not already set
+if ! git remote get-url origin &> /dev/null; then
+    echo "   Adding GitHub as origin (main repository)..."
+    git remote add origin https://github.com/BilalKhawaja-dev/ProductivityApp.git
+fi
+
+# Add CodeCommit as deployment remote
+if git remote get-url aws &> /dev/null; then
+    echo "   Updating existing 'aws' remote..."
+    git remote set-url aws "$CLONE_URL"
+else
+    echo "   Adding CodeCommit as 'aws' remote (deployment)..."
+    git remote add aws "$CLONE_URL"
+fi
 
 # Configure git credential helper for CodeCommit
+echo "🔧 Configuring AWS credentials for CodeCommit..."
 git config credential.helper '!aws codecommit credential-helper $@'
 git config credential.UseHttpPath true
 
-# Push to CodeCommit
-git push codecommit main
+# Push to both repositories
+echo ""
+echo "📤 Pushing code to both repositories..."
+echo "   📋 Pushing to GitHub (main repository)..."
+git push origin main
+
+echo "   ⚡ Pushing to CodeCommit (triggers AWS deployment)..."
+git push aws main
 
 echo ""
-echo "🎉 Setup Complete!"
+echo "🎉 Dual Repository Setup Complete!"
 echo ""
-echo "📋 What happens next:"
-echo "   1. Your code is now in AWS CodeCommit"
-echo "   2. The CI/CD pipeline will automatically build and deploy"
-echo "   3. Check AWS Console → CodePipeline to monitor progress"
-echo "   4. Your app will be updated in ~5 minutes"
+echo "📋 Repository Configuration:"
+echo "   📋 GitHub (origin): Main repository for portfolio/LinkedIn"
+echo "   ⚡ CodeCommit (aws): AWS deployment pipeline"
 echo ""
-echo "🔧 Future deployments:"
-echo "   Just push to CodeCommit: git push codecommit main"
+echo "🔄 Workflow for future changes:"
+echo "   1. Make your changes and commit normally"
+echo "   2. Push to GitHub: git push origin main"
+echo "   3. Deploy to AWS: git push aws main"
+echo "   4. Or push to both: git push origin main && git push aws main"
 echo ""
-echo "📊 Monitor your pipelines:"
+echo "📊 Monitor your AWS deployment:"
 echo "   AWS Console → CodePipeline → View pipelines"
 echo ""
-echo "💰 Cost: ~$4.50/month for CI/CD services"
+echo "💰 Cost: ~$5/month for AWS CI/CD services"
 echo ""
 echo "🎯 Your live app: https://$(cd terraform && terraform output -raw cloudfront_domain_name)"
+echo ""
+echo "✨ Benefits:"
+echo "   📋 GitHub: Perfect for portfolio and LinkedIn showcase"
+echo "   ⚡ CodeCommit: Seamless AWS deployment without tokens"
+echo "   🔄 Dual workflow: Best of both worlds!"

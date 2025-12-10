@@ -131,7 +131,7 @@ module "monitoring" {
 
   environment           = var.environment
   api_gateway_id        = module.api_gateway.api_id
-  lambda_function_names = module.lambda.lambda_function_names
+  lambda_function_names = module.lambda.lambda_function_names_list
   dynamodb_table_name   = module.dynamodb.table_name
   sns_topic_arn         = module.sns.topic_arn
   budget_limit          = var.budget_limit

@@ -477,12 +477,15 @@ resource "aws_codepipeline" "backend_pipeline" {
     action {
       name             = "Source"
       category         = "Source"
-      owner            = "ThirdParty"
-      provider         = "GitHub"
+      owner            = var.use_codecommit ? "AWS" : "ThirdParty"
+      provider         = var.use_codecommit ? "CodeCommit" : "GitHub"
       version          = "1"
       output_artifacts = ["source_output"]
 
-      configuration = {
+      configuration = var.use_codecommit ? {
+        RepositoryName = aws_codecommit_repository.main[0].repository_name
+        BranchName     = var.github_branch
+      } : {
         Owner      = var.github_owner
         Repo       = var.github_repo
         Branch     = var.github_branch
@@ -759,12 +762,16 @@ resource "aws_codepipeline" "infrastructure_pipeline" {
     action {
       name             = "Source"
       category         = "Source"
-      owner            = "ThirdParty"
-      provider         = "GitHub"
+      owner            = var.use_codecommit ? "AWS" : "ThirdParty"
+      provider         = var.use_codecommit ? "CodeCommit" : "GitHub"
       version          = "1"
       output_artifacts = ["source_output"]
 
-      configuration = {
+      configuration = var.use_codecommit ? {
+        RepositoryName       = aws_codecommit_repository.main[0].repository_name
+        BranchName           = var.github_branch
+        PollForSourceChanges = false
+      } : {
         Owner                = var.github_owner
         Repo                 = var.github_repo
         Branch               = var.github_branch

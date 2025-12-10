@@ -20,11 +20,38 @@ output "lambda_functions" {
 }
 
 output "lambda_function_names" {
-  description = "List of Lambda function names"
+  description = "Map of Lambda function names for CI/CD deployment"
+  value = {
+    register_user           = aws_lambda_function.register_user.function_name
+    login_user              = aws_lambda_function.login_user.function_name
+    verify_token            = aws_lambda_function.verify_token.function_name
+    update_user_preferences = aws_lambda_function.update_user_preferences.function_name
+    create_task             = aws_lambda_function.create_task.function_name
+    get_tasks               = aws_lambda_function.get_tasks.function_name
+    update_task             = aws_lambda_function.update_task.function_name
+    delete_task             = aws_lambda_function.delete_task.function_name
+    toggle_task_complete    = aws_lambda_function.toggle_task_complete.function_name
+    create_category         = aws_lambda_function.create_category.function_name
+    get_categories          = aws_lambda_function.get_categories.function_name
+    update_category         = aws_lambda_function.update_category.function_name
+    delete_category         = aws_lambda_function.delete_category.function_name
+    schedule_reminder       = aws_lambda_function.schedule_reminder.function_name
+    send_reminder           = aws_lambda_function.send_reminder.function_name
+    generate_insights       = aws_lambda_function.generate_insights.function_name
+    get_insights            = aws_lambda_function.get_insights.function_name
+    process_recurring_tasks = aws_lambda_function.process_recurring_tasks.function_name
+    warm_lambda             = aws_lambda_function.warm_lambda.function_name
+    generate_weekly_report  = aws_lambda_function.generate_weekly_report.function_name
+  }
+}
+
+output "lambda_function_names_list" {
+  description = "List of Lambda function names for monitoring"
   value = [
     aws_lambda_function.register_user.function_name,
     aws_lambda_function.login_user.function_name,
     aws_lambda_function.verify_token.function_name,
+    aws_lambda_function.update_user_preferences.function_name,
     aws_lambda_function.create_task.function_name,
     aws_lambda_function.get_tasks.function_name,
     aws_lambda_function.update_task.function_name,
@@ -34,7 +61,13 @@ output "lambda_function_names" {
     aws_lambda_function.get_categories.function_name,
     aws_lambda_function.update_category.function_name,
     aws_lambda_function.delete_category.function_name,
-    aws_lambda_function.process_recurring_tasks.function_name
+    aws_lambda_function.schedule_reminder.function_name,
+    aws_lambda_function.send_reminder.function_name,
+    aws_lambda_function.generate_insights.function_name,
+    aws_lambda_function.get_insights.function_name,
+    aws_lambda_function.process_recurring_tasks.function_name,
+    aws_lambda_function.warm_lambda.function_name,
+    aws_lambda_function.generate_weekly_report.function_name
   ]
 }
 
