@@ -1,0 +1,17 @@
+{
+  "name": "productivity-app-api-tests",
+  "version": "1.0.0",
+  "description": "Integration tests for Productivity App backend APIs",
+  "main": "api-integration.test.js",
+  "scripts": {
+    "test": "node api-integration.test.js",
+    "test:local": "API_GATEWAY_URL=http://localhost:3000 node api-integration.test.js"
+  },
+  "keywords": [
+    "testing",
+    "integration",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT"
+}

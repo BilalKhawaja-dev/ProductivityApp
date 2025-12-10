@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Dark/Green Theme */
+html.dark-green {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #3d3d3d;
+  --text-primary: #ffffff;
+  --text-secondary: #a3a3a3;
+  --accent: #4ade80;
+  --accent-hover: #22c55e;
+  --border: #404040;
+}
+
+html.dark-green body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+html.dark-green .bg-primary {
+  background-color: var(--bg-primary);
+}
+
+html.dark-green .bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+html.dark-green .bg-tertiary {
+  background-color: var(--bg-tertiary);
+}
+
+html.dark-green .text-primary {
+  color: var(--text-primary);
+}
+
+html.dark-green .text-secondary {
+  color: var(--text-secondary);
+}
+
+html.dark-green .accent {
+  color: var(--accent);
+}
+
+html.dark-green .bg-accent {
+  background-color: var(--accent);
+}
+
+html.dark-green .bg-accent:hover {
+  background-color: var(--accent-hover);
+}
+
+html.dark-green .bg-accent-dark {
+  background-color: var(--accent-hover);
+}
+
+html.dark-green .border-color {
+  border-color: var(--border);
+}
+
+html.dark-green .bg-card {
+  background-color: var(--bg-secondary);
+}
+
+html.dark-green .bg-tertiary {
+  background-color: var(--bg-tertiary);
+}
+
+html.dark-green .placeholder-text-secondary::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Pink/White Theme */
+html.pink-white {
+  --bg-primary: #ffffff;
+  --bg-secondary: #fef2f2;
+  --bg-tertiary: #fce7f3;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --accent: #ec4899;
+  --accent-hover: #db2777;
+  --border: #e5e7eb;
+}
+
+html.pink-white body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+html.pink-white .bg-primary {
+  background-color: var(--bg-primary);
+}
+
+html.pink-white .bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+html.pink-white .bg-tertiary {
+  background-color: var(--bg-tertiary);
+}
+
+html.pink-white .text-primary {
+  color: var(--text-primary);
+}
+
+html.pink-white .text-secondary {
+  color: var(--text-secondary);
+}
+
+html.pink-white .accent {
+  color: var(--accent);
+}
+
+html.pink-white .bg-accent {
+  background-color: var(--accent);
+}
+
+html.pink-white .bg-accent:hover {
+  background-color: var(--accent-hover);
+}
+
+html.pink-white .bg-accent-dark {
+  background-color: var(--accent-hover);
+}
+
+html.pink-white .border-color {
+  border-color: var(--border);
+}
+
+html.pink-white .bg-card {
+  background-color: var(--bg-secondary);
+}
+
+html.pink-white .bg-tertiary {
+  background-color: var(--bg-tertiary);
+}
+
+html.pink-white .placeholder-text-secondary::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Blue/White Theme */
+html.blue-white {
+  --bg-primary: #ffffff;
+  --bg-secondary: #eff6ff;
+  --bg-tertiary: #dbeafe;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --border: #e5e7eb;
+}
+
+html.blue-white body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+html.blue-white .bg-primary {
+  background-color: var(--bg-primary);
+}
+
+html.blue-white .bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+html.blue-white .bg-tertiary {
+  background-color: var(--bg-tertiary);
+}
+
+html.blue-white .text-primary {
+  color: var(--text-primary);
+}
+
+html.blue-white .text-secondary {
+  color: var(--text-secondary);
+}
+
+html.blue-white .accent {
+  color: var(--accent);
+}
+
+html.blue-white .bg-accent {
+  background-color: var(--accent);
+}
+
+html.blue-white .bg-accent:hover {
+  background-color: var(--accent-hover);
+}
+
+html.blue-white .bg-accent-dark {
+  background-color: var(--accent-hover);
+}
+
+html.blue-white .border-color {
+  border-color: var(--border);
+}
+
+html.blue-white .bg-card {
+  background-color: var(--bg-secondary);
+}
+
+html.blue-white .bg-tertiary {
+  background-color: var(--bg-tertiary);
+}
+
+html.blue-white .placeholder-text-secondary::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Toast animations */
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}

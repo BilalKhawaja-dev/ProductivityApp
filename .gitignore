@@ -1,0 +1,97 @@
+# Terraform
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/*.tfvars
+!terraform/terraform.tfvars.example
+terraform/.terraform.tfstate.lock.info
+terraform/crash.log
+terraform/override.tf
+terraform/override.tf.json
+terraform/*_override.tf
+terraform/*_override.tf.json
+terraform/tfplan
+
+# Terraform modules (exclude .terraform directories from modules)
+terraform/modules/*/.terraform/
+terraform/modules/*/.terraform.lock.hcl
+
+# Lambda ZIP packages (generated during deployment)
+terraform/modules/lambda/lambda_packages/
+*.zip
+
+# Lambda packages
+backend/lambdas/**/node_modules/
+backend/lambdas/**/*.zip
+backend/lambdas/**/package-lock.json
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env
+frontend/.env.local
+frontend/.env.production
+frontend/package-lock.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# AWS
+.aws-sam/
+
+# Kiro IDE files (exclude from git)
+.kiro/
+
+# Development and testing files
+generate-test-data.js
+frontend/debug-api.html
+frontend/open-browser.sh
+
+# Documentation files (keep main README.md)
+CHECKPOINT_*.md
+TASK_*.md
+CICD_*.md
+*_SUMMARY.md
+*_IMPLEMENTATION.md
+*_GUIDE.md
+*_RESULTS.md
+*_REPORT.md
+*_COMPLETE.md
+*_QUICK_REFERENCE.md
+frontend/MANUAL_TEST_GUIDE.md
+frontend/INTEGRATION_TEST_RESULTS.md
+frontend/integration-test.js
+frontend/AUTHENTICATION_IMPLEMENTATION.md
+frontend/ERROR_HANDLING_*.md
+backend/lambdas/FINAL_COMPLETION_SUMMARY.md
+backend/lambdas/QUICK_REFERENCE.md
+backend/lambdas/TASK_15_COMPLETION_SUMMARY.md
+backend/lambdas/ERROR_HANDLING_IMPLEMENTATION.md
+backend/lambdas/UPDATE_GUIDE.md
+backend/tests/CHECKPOINT_*.md
+backend/tests/TEST_RESULTS.md
+backend/tests/QUICK_START.md
+backend/tests/MANUAL_TEST_CHECKLIST.md
+backend/tests/TESTING_GUIDE.md
+
+# Misc
+*.bak
+*.tmp

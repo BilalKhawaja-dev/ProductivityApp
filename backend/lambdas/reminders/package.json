@@ -1,0 +1,14 @@
+{
+  "name": "reminder-lambdas",
+  "version": "1.0.0",
+  "description": "Reminder Lambda functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@aws-sdk/client-eventbridge": "^3.0.0",
+    "@aws-sdk/client-sns": "^3.0.0",
+    "@aws-sdk/client-sts": "^3.0.0"
+  }
+}
