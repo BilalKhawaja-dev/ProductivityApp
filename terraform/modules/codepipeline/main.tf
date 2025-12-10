@@ -1,5 +1,17 @@
 # CodePipeline Module for CI/CD
 
+# CodeCommit repository (optional, used when use_codecommit = true)
+resource "aws_codecommit_repository" "main" {
+  count           = var.use_codecommit ? 1 : 0
+  repository_name = "${var.environment}-productivity-app"
+  description     = "Productivity App source code repository"
+
+  tags = {
+    Name        = "${var.environment}-productivity-app-repo"
+    Environment = var.environment
+  }
+}
+
 # S3 bucket for pipeline artifacts
 resource "aws_s3_bucket" "pipeline_artifacts" {
   bucket = "${var.environment}-productivity-app-pipeline-artifacts"
@@ -81,6 +93,17 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
           "sns:Publish"
         ]
         Resource = var.sns_topic_arn
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "codecommit:GetBranch",
+          "codecommit:GetCommit",
+          "codecommit:GetRepository",
+          "codecommit:ListBranches",
+          "codecommit:ListRepositories"
+        ]
+        Resource = var.use_codecommit ? aws_codecommit_repository.main[0].arn : "*"
       }
     ]
   })
@@ -250,12 +273,15 @@ resource "aws_codepipeline" "frontend_pipeline" {
     action {
       name             = "Source"
       category         = "Source"
-      owner            = "ThirdParty"
-      provider         = "GitHub"
+      owner            = var.use_codecommit ? "AWS" : "ThirdParty"
+      provider         = var.use_codecommit ? "CodeCommit" : "GitHub"
       version          = "1"
       output_artifacts = ["source_output"]
 
-      configuration = {
+      configuration = var.use_codecommit ? {
+        RepositoryName = aws_codecommit_repository.main[0].repository_name
+        BranchName     = var.github_branch
+      } : {
         Owner      = var.github_owner
         Repo       = var.github_repo
         Branch     = var.github_branch

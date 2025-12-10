@@ -39,3 +39,18 @@ output "infrastructure_approval_topic_arn" {
   description = "SNS topic ARN for infrastructure approval notifications"
   value       = aws_sns_topic.infrastructure_approval.arn
 }
+
+output "codecommit_repository_name" {
+  description = "Name of the CodeCommit repository (if using CodeCommit)"
+  value       = var.use_codecommit ? aws_codecommit_repository.main[0].repository_name : null
+}
+
+output "codecommit_clone_url_http" {
+  description = "HTTP clone URL for CodeCommit repository (if using CodeCommit)"
+  value       = var.use_codecommit ? aws_codecommit_repository.main[0].clone_url_http : null
+}
+
+output "codecommit_clone_url_ssh" {
+  description = "SSH clone URL for CodeCommit repository (if using CodeCommit)"
+  value       = var.use_codecommit ? aws_codecommit_repository.main[0].clone_url_ssh : null
+}

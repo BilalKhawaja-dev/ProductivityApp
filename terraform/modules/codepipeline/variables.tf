@@ -25,6 +25,13 @@ variable "github_token" {
   description = "GitHub personal access token for CodePipeline"
   type        = string
   sensitive   = true
+  default     = ""
+}
+
+variable "use_codecommit" {
+  description = "Use AWS CodeCommit instead of GitHub"
+  type        = bool
+  default     = false
 }
 
 variable "frontend_bucket_name" {

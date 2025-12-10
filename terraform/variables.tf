@@ -67,7 +67,13 @@ variable "github_token" {
 }
 
 variable "enable_cicd" {
-  description = "Enable CI/CD pipelines (requires GitHub configuration)"
+  description = "Enable CI/CD pipelines"
+  type        = bool
+  default     = false
+}
+
+variable "use_codecommit" {
+  description = "Use AWS CodeCommit instead of GitHub (no token required)"
   type        = bool
   default     = false
 }
