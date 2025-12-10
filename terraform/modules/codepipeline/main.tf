@@ -101,7 +101,10 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
           "codecommit:GetCommit",
           "codecommit:GetRepository",
           "codecommit:ListBranches",
-          "codecommit:ListRepositories"
+          "codecommit:ListRepositories",
+          "codecommit:UploadArchive",
+          "codecommit:GetUploadArchiveStatus",
+          "codecommit:CancelUploadArchive"
         ]
         Resource = var.use_codecommit ? aws_codecommit_repository.main[0].arn : "*"
       }
@@ -224,9 +227,19 @@ resource "aws_codebuild_project" "frontend_build" {
       phases:
         pre_build:
           commands:
+            - echo "Node.js version:"
+            - node --version
+            - echo "NPM version:"
+            - npm --version
+            - echo "Current directory:"
+            - pwd
+            - echo "Directory contents:"
+            - ls -la
             - echo "Installing dependencies..."
             - cd frontend
-            - npm ci
+            - echo "Frontend directory contents:"
+            - ls -la
+            - npm install
         build:
           commands:
             - echo "Building React application..."
@@ -743,7 +756,7 @@ resource "aws_sns_topic" "infrastructure_approval" {
 resource "aws_sns_topic_subscription" "infrastructure_approval_email" {
   topic_arn = aws_sns_topic.infrastructure_approval.arn
   protocol  = "email"
-  endpoint  = var.github_owner # Using github_owner as admin email placeholder
+  endpoint  = "admin@example.com" # Placeholder email - update with real email
 }
 
 # CodePipeline for infrastructure

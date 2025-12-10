@@ -11,7 +11,7 @@ const {
 } = require('../shared/errorHandler');
 const { createLogger } = require('../shared/logSanitizer');
 
-const client = new DynamoDBClient({});
+const client = new DynamoDBClient({ region: process.env.AWS_REGION || 'us-east-1' });
 const docClient = DynamoDBDocumentClient.from(client);
 
 const TABLE_NAME = process.env.TABLE_NAME;
