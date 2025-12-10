@@ -282,7 +282,7 @@ function DashboardPage() {
                 return (
                   <div
                     key={task.taskId}
-                    className="flex items-center gap-3 p-3 border border-gray-200 rounded-md hover:bg-gray-50"
+                    className="flex items-center gap-3 p-3 border border-color rounded-md hover:bg-tertiary"
                   >
                     {/* Completion Checkbox */}
                     <input
@@ -296,8 +296,8 @@ function DashboardPage() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <span
-                          className={`text-primary ${
-                            task.completed ? 'line-through text-gray-500' : ''
+                          className={`${
+                            task.completed ? 'line-through text-secondary' : 'text-primary'
                           }`}
                         >
                           {task.title}

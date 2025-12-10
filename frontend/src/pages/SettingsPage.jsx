@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import categoryService from '../services/categoryService'
 import authService from '../services/authService'
 import CategoryModal from '../components/CategoryModal'
+import { validatePhone, validateEmail } from '../utils/validation'
 
 function SettingsPage() {
   const { user, logout } = useAuth()
@@ -140,10 +141,23 @@ function SettingsPage() {
       setPreferencesSuccess(false)
 
       // Validate phone number if SMS is enabled
-      if (smsNotifications && !phoneNumber) {
-        setError('Phone number is required for SMS notifications')
-        setSavingPreferences(false)
-        return
+      if (smsNotifications) {
+        const phoneError = validatePhone(phoneNumber, true)
+        if (phoneError) {
+          setError(phoneError)
+          setSavingPreferences(false)
+          return
+        }
+      }
+
+      // Validate email notifications (user should have valid email)
+      if (emailNotifications && user?.email) {
+        const emailError = validateEmail(user.email)
+        if (emailError) {
+          setError('Your account email is invalid. Please contact support.')
+          setSavingPreferences(false)
+          return
+        }
       }
 
       // Validate default reminder minutes
@@ -201,7 +215,7 @@ function SettingsPage() {
             </Link>
             <button
               onClick={handleLogout}
-              className="px-3 py-2 text-sm sm:text-base bg-gray-600 text-white rounded-md hover:bg-gray-700"
+              className="px-3 py-2 text-sm sm:text-base bg-secondary text-primary border border-color rounded-md hover:bg-tertiary"
             >
               Logout
             </button>
@@ -233,7 +247,7 @@ function SettingsPage() {
               {categories.map(category => (
                 <div
                   key={category.categoryId}
-                  className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 border border-gray-200 rounded-md hover:bg-gray-50 gap-3"
+                  className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 border border-color rounded-md hover:bg-tertiary gap-3"
                 >
                   <div className="flex items-center gap-3">
                     <div
@@ -245,7 +259,7 @@ function SettingsPage() {
                   <div className="flex gap-2 w-full sm:w-auto">
                     <button
                       onClick={() => handleEditCategory(category)}
-                      className="flex-1 sm:flex-none px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-sm"
+                      className="flex-1 sm:flex-none px-3 py-1 bg-accent text-white rounded-md hover:bg-accent-dark text-sm"
                     >
                       Edit
                     </button>
@@ -279,7 +293,7 @@ function SettingsPage() {
                 className={`p-4 border-2 rounded-lg transition-all ${
                   theme === themes.DARK_GREEN
                     ? 'border-accent bg-accent bg-opacity-10'
-                    : 'border-gray-300 hover:border-accent'
+                    : 'border-color hover:border-accent'
                 }`}
               >
                 <div className="flex items-center gap-3 mb-2">
@@ -301,11 +315,11 @@ function SettingsPage() {
                 className={`p-4 border-2 rounded-lg transition-all ${
                   theme === themes.PINK_WHITE
                     ? 'border-accent bg-accent bg-opacity-10'
-                    : 'border-gray-300 hover:border-accent'
+                    : 'border-color hover:border-accent'
                 }`}
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 rounded bg-white border border-gray-300"></div>
+                  <div className="w-8 h-8 rounded bg-white border border-color"></div>
                   <div className="w-8 h-8 rounded bg-pink-500"></div>
                 </div>
                 <div className="text-left">
@@ -323,11 +337,11 @@ function SettingsPage() {
                 className={`p-4 border-2 rounded-lg transition-all ${
                   theme === themes.BLUE_WHITE
                     ? 'border-accent bg-accent bg-opacity-10'
-                    : 'border-gray-300 hover:border-accent'
+                    : 'border-color hover:border-accent'
                 }`}
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 rounded bg-white border border-gray-300"></div>
+                  <div className="w-8 h-8 rounded bg-white border border-color"></div>
                   <div className="w-8 h-8 rounded bg-blue-400"></div>
                 </div>
                 <div className="text-left">
@@ -357,12 +371,12 @@ function SettingsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <label className="text-primary font-medium">Email Notifications</label>
-                <p className="text-sm text-secondary">Receive task reminders via email</p>
+                <p className="text-sm text-secondary">Receive task reminders via email ({user?.email})</p>
               </div>
               <button
                 onClick={() => setEmailNotifications(!emailNotifications)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  emailNotifications ? 'bg-accent' : 'bg-gray-300'
+                  emailNotifications ? 'bg-accent' : 'bg-secondary border border-color'
                 }`}
               >
                 <span
@@ -382,7 +396,7 @@ function SettingsPage() {
               <button
                 onClick={() => setSmsNotifications(!smsNotifications)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  smsNotifications ? 'bg-accent' : 'bg-gray-300'
+                  smsNotifications ? 'bg-accent' : 'bg-secondary border border-color'
                 }`}
               >
                 <span
@@ -404,7 +418,7 @@ function SettingsPage() {
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
                   placeholder="+447123456789"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+                  className="w-full px-4 py-2 border border-color rounded-md focus:outline-none focus:ring-2 focus:ring-accent bg-secondary text-primary placeholder-text-secondary"
                 />
                 <p className="text-sm text-secondary mt-1">
                   Include country code (e.g., +44 for UK)
@@ -424,7 +438,7 @@ function SettingsPage() {
                   onChange={(e) => setDefaultReminderMinutes(e.target.value)}
                   min="0"
                   max="1440"
-                  className="w-32 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+                  className="w-32 px-4 py-2 border border-color rounded-md focus:outline-none focus:ring-2 focus:ring-accent bg-secondary text-primary"
                 />
                 <span className="text-secondary">minutes before due time</span>
               </div>
@@ -458,21 +472,21 @@ function SettingsPage() {
       {/* Delete Confirmation Dialog */}
       {showDeleteConfirm && categoryToDelete && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-4 sm:p-6 max-w-md w-full">
-            <h3 className="text-lg sm:text-xl font-semibold mb-4 text-gray-900">
+          <div className="bg-card rounded-lg p-4 sm:p-6 max-w-md w-full">
+            <h3 className="text-lg sm:text-xl font-semibold mb-4 text-primary">
               Confirm Delete
             </h3>
-            <p className="text-sm sm:text-base text-gray-700 mb-2">
+            <p className="text-sm sm:text-base text-primary mb-2">
               Are you sure you want to delete the category "{categoryToDelete.name}"?
             </p>
-            <p className="text-xs sm:text-sm text-gray-600 mb-6">
+            <p className="text-xs sm:text-sm text-secondary mb-6">
               Note: Tasks with this category will not be deleted, but they will have an orphaned category reference.
             </p>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-end">
               <button
                 onClick={handleCancelDelete}
                 disabled={deleting}
-                className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed order-2 sm:order-1"
+                className="px-4 py-2 bg-secondary text-primary border border-color rounded-md hover:bg-tertiary disabled:opacity-50 disabled:cursor-not-allowed order-2 sm:order-1"
               >
                 Cancel
               </button>

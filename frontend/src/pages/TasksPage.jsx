@@ -130,7 +130,7 @@ function TasksPage() {
       case 'low':
         return 'bg-green-100 text-green-800'
       default:
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-secondary text-primary'
     }
   }
 
@@ -198,7 +198,7 @@ function TasksPage() {
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-color rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent bg-secondary text-primary"
               >
                 <option value="">All Categories</option>
                 {categories.map(category => (
@@ -217,7 +217,7 @@ function TasksPage() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-color rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent bg-secondary text-primary"
               >
                 <option value="">All Tasks</option>
                 <option value="completed">Completed</option>
@@ -233,7 +233,7 @@ function TasksPage() {
               <select
                 value={priorityFilter}
                 onChange={(e) => setPriorityFilter(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-color rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent bg-secondary text-primary"
               >
                 <option value="">All Priorities</option>
                 <option value="high">High</option>
@@ -252,7 +252,7 @@ function TasksPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search title or description..."
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-color rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent bg-secondary text-primary placeholder-text-secondary"
               />
             </div>
           </div>
@@ -291,7 +291,7 @@ function TasksPage() {
               )}
             </div>
           ) : (
-            <div className="divide-y divide-gray-200">
+            <div className="divide-y divide-gray-200 dark:divide-gray-600">
               {filteredTasks.map(task => {
                 const categoryInfo = getCategoryInfo(task.categoryId)
                 
@@ -309,8 +309,8 @@ function TasksPage() {
                       >
                         <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
                           task.completed
-                            ? 'bg-blue-600 border-blue-600'
-                            : 'border-gray-300 hover:border-blue-600'
+                            ? 'bg-accent border-accent'
+                            : 'border-color hover:border-accent'
                         }`}>
                           {task.completed && (
                             <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -324,7 +324,7 @@ function TasksPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex flex-col sm:flex-row items-start justify-between gap-2 mb-2">
                           <h3 className={`text-base sm:text-lg font-medium ${
-                            task.completed ? 'text-gray-400 line-through' : 'text-gray-900'
+                            task.completed ? 'text-secondary line-through' : 'text-primary'
                           }`}>
                             {task.title}
                           </h3>
@@ -338,7 +338,7 @@ function TasksPage() {
                         {/* Description */}
                         {task.description && (
                           <p className={`text-sm mb-2 ${
-                            task.completed ? 'text-gray-400' : 'text-gray-600'
+                            task.completed ? 'text-secondary opacity-75' : 'text-secondary'
                           }`}>
                             {task.description}
                           </p>

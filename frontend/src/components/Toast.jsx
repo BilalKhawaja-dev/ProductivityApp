@@ -75,7 +75,7 @@ function Toast({ message, type = 'info', onClose, duration = 5000 }) {
         <div className="ml-4 flex-shrink-0 flex">
           <button
             onClick={onClose}
-            className="inline-flex text-gray-400 hover:text-gray-500 focus:outline-none"
+            className="inline-flex text-secondary hover:text-primary focus:outline-none"
           >
             <span className="sr-only">Close</span>
             <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

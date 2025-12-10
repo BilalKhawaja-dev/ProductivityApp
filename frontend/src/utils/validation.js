@@ -138,7 +138,7 @@ export function validatePriority(priority) {
 }
 
 /**
- * Validate phone number (basic validation)
+ * Validate phone number (international format)
  * @param {string} phone - Phone number to validate
  * @param {boolean} required - Whether the field is required
  * @returns {string|null} - Error message or null if valid
@@ -148,11 +148,12 @@ export function validatePhone(phone, required = false) {
     return required ? 'Phone number is required' : null
   }
   
-  // Remove all non-digit characters for validation
-  const digitsOnly = phone.replace(/\D/g, '')
+  // Basic international phone number validation
+  // Should start with + and have 7-15 digits
+  const phoneRegex = /^\+[1-9]\d{6,14}$/
   
-  if (digitsOnly.length < 10) {
-    return 'Phone number must be at least 10 digits'
+  if (!phoneRegex.test(phone)) {
+    return 'Phone number must be in international format (e.g., +447123456789)'
   }
   
   return null

@@ -116,8 +116,8 @@ function CategoryModal({ isOpen, onClose, onSave, category }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg p-4 sm:p-6 max-w-md w-full">
-        <h3 className="text-lg sm:text-xl font-semibold mb-4 text-gray-900">
+      <div className="bg-card rounded-lg p-4 sm:p-6 max-w-md w-full">
+        <h3 className="text-lg sm:text-xl font-semibold mb-4 text-primary">
           {category ? 'Edit Category' : 'Create Category'}
         </h3>
 
@@ -138,7 +138,7 @@ function CategoryModal({ isOpen, onClose, onSave, category }) {
         <form onSubmit={handleSubmit}>
           {/* Category Name */}
           <div className="mb-4">
-            <label htmlFor="categoryName" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="categoryName" className="block text-sm font-medium text-primary mb-2">
               Category Name *
             </label>
             <input
@@ -147,7 +147,7 @@ function CategoryModal({ isOpen, onClose, onSave, category }) {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g., Work, Personal, Health"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-color rounded-md focus:outline-none focus:ring-2 focus:ring-accent bg-secondary text-primary placeholder-text-secondary"
               disabled={loading}
               maxLength={50}
             />
@@ -155,7 +155,7 @@ function CategoryModal({ isOpen, onClose, onSave, category }) {
 
           {/* Color Picker */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-primary mb-2">
               Category Color *
             </label>
             <div className="flex flex-wrap gap-2 mb-3">
@@ -165,8 +165,8 @@ function CategoryModal({ isOpen, onClose, onSave, category }) {
                   type="button"
                   onClick={() => setColor(colorOption)}
                   className={`w-10 h-10 rounded-full border-2 ${
-                    color === colorOption ? 'border-gray-900' : 'border-gray-300'
-                  } hover:border-gray-500 transition-colors`}
+                    color === colorOption ? 'border-primary' : 'border-color'
+                  } hover:border-accent transition-colors`}
                   style={{ backgroundColor: colorOption }}
                   disabled={loading}
                   title={colorOption}
@@ -176,7 +176,7 @@ function CategoryModal({ isOpen, onClose, onSave, category }) {
             
             {/* Custom Color Input */}
             <div className="flex items-center gap-2">
-              <label htmlFor="customColor" className="text-sm text-gray-600">
+              <label htmlFor="customColor" className="text-sm text-secondary">
                 Custom:
               </label>
               <input
@@ -184,22 +184,22 @@ function CategoryModal({ isOpen, onClose, onSave, category }) {
                 id="customColor"
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
-                className="w-12 h-8 border border-gray-300 rounded cursor-pointer"
+                className="w-12 h-8 border border-color rounded cursor-pointer"
                 disabled={loading}
               />
-              <span className="text-sm text-gray-600">{color}</span>
+              <span className="text-sm text-secondary">{color}</span>
             </div>
           </div>
 
           {/* Preview */}
-          <div className="mb-6 p-4 bg-gray-50 rounded-md">
-            <p className="text-sm text-gray-600 mb-2">Preview:</p>
+          <div className="mb-6 p-4 bg-tertiary rounded-md">
+            <p className="text-sm text-secondary mb-2">Preview:</p>
             <div className="flex items-center gap-2">
               <div
                 className="w-6 h-6 rounded-full"
                 style={{ backgroundColor: color }}
               />
-              <span className="text-gray-900 font-medium">
+              <span className="text-primary font-medium">
                 {name.trim() || 'Category Name'}
               </span>
             </div>
@@ -211,14 +211,14 @@ function CategoryModal({ isOpen, onClose, onSave, category }) {
               type="button"
               onClick={handleClose}
               disabled={loading}
-              className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed order-2 sm:order-1"
+              className="px-4 py-2 bg-secondary text-primary border border-color rounded-md hover:bg-tertiary disabled:opacity-50 disabled:cursor-not-allowed order-2 sm:order-1"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading || !name.trim()}
-              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed order-1 sm:order-2"
+              className="px-4 py-2 bg-accent text-white rounded-md hover:bg-accent-dark disabled:opacity-50 disabled:cursor-not-allowed order-1 sm:order-2"
             >
               {loading ? 'Saving...' : category ? 'Update Category' : 'Create Category'}
             </button>

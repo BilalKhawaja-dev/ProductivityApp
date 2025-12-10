@@ -118,7 +118,7 @@ function InsightsPage() {
             </Link>
             <button
               onClick={handleLogout}
-              className="px-3 py-2 text-sm sm:text-base bg-gray-600 text-white rounded-md hover:bg-gray-700"
+              className="px-3 py-2 text-sm sm:text-base bg-secondary text-primary border border-color rounded-md hover:bg-tertiary"
             >
               Logout
             </button>
@@ -169,7 +169,7 @@ function InsightsPage() {
             insights.map((insight, index) => (
               <div key={index} className="bg-card rounded-lg shadow p-6">
                 {/* Insight Header */}
-                <div className="mb-4 pb-4 border-b border-gray-200">
+                <div className="mb-4 pb-4 border-b border-color">
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-semibold text-primary">
                       Insight from {formatDate(insight.generatedAt)}
@@ -194,7 +194,7 @@ function InsightsPage() {
                       {/* Most Productive Day */}
                       {insight.patterns.mostProductiveDay && (
                         <div className="bg-green-50 border border-green-200 rounded-md p-4">
-                          <p className="text-sm text-gray-600 mb-1">Most Productive Day</p>
+                          <p className="text-sm text-secondary mb-1">Most Productive Day</p>
                           <p className="text-lg font-semibold text-green-800">
                             {insight.patterns.mostProductiveDay}
                           </p>
@@ -204,7 +204,7 @@ function InsightsPage() {
                       {/* Least Productive Day */}
                       {insight.patterns.leastProductiveDay && (
                         <div className="bg-orange-50 border border-orange-200 rounded-md p-4">
-                          <p className="text-sm text-gray-600 mb-1">Least Productive Day</p>
+                          <p className="text-sm text-secondary mb-1">Least Productive Day</p>
                           <p className="text-lg font-semibold text-orange-800">
                             {insight.patterns.leastProductiveDay}
                           </p>
@@ -214,7 +214,7 @@ function InsightsPage() {
                       {/* Completion Rate */}
                       {insight.patterns.completionRate !== undefined && (
                         <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
-                          <p className="text-sm text-gray-600 mb-1">Completion Rate</p>
+                          <p className="text-sm text-secondary mb-1">Completion Rate</p>
                           <p className="text-lg font-semibold text-blue-800">
                             {formatPercentage(insight.patterns.completionRate)}
                           </p>
@@ -224,7 +224,7 @@ function InsightsPage() {
                       {/* Average Tasks Per Day */}
                       {insight.patterns.averageTasksPerDay !== undefined && (
                         <div className="bg-purple-50 border border-purple-200 rounded-md p-4">
-                          <p className="text-sm text-gray-600 mb-1">Average Tasks Per Day</p>
+                          <p className="text-sm text-secondary mb-1">Average Tasks Per Day</p>
                           <p className="text-lg font-semibold text-purple-800">
                             {insight.patterns.averageTasksPerDay.toFixed(1)}
                           </p>
@@ -270,7 +270,7 @@ function InsightsPage() {
           ) : (
             <div className="bg-card rounded-lg shadow p-12 text-center">
               <svg
-                className="mx-auto h-12 w-12 text-gray-400 mb-4"
+                className="mx-auto h-12 w-12 text-secondary mb-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

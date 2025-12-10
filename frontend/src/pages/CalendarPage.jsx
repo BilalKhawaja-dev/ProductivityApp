@@ -185,7 +185,7 @@ function CalendarPage() {
                   {date.toLocaleDateString('en-US', { weekday: 'short' })}
                 </div>
                 <div className={`text-base sm:text-lg font-bold ${
-                  isToday ? 'text-blue-600' : 'text-gray-900'
+                  isToday ? 'text-accent' : 'text-primary'
                 }`}>
                   {date.getDate()}
                 </div>
@@ -212,7 +212,7 @@ function CalendarPage() {
                         </div>
                       )}
                       {task.completed && (
-                        <div className="text-xs text-green-600 mt-1">
+        <div className="text-xs text-accent mt-1">
                           ✓ Completed
                         </div>
                       )}
@@ -259,13 +259,13 @@ function CalendarPage() {
         days.push(
           <div
             key={i}
-            className={`bg-white rounded-lg border-2 p-1 sm:p-2 min-h-[80px] sm:min-h-[120px] ${
-              isToday ? 'border-blue-500' : 'border-gray-200'
+            className={`bg-card rounded-lg border-2 p-1 sm:p-2 min-h-[80px] sm:min-h-[120px] ${
+              isToday ? 'border-accent' : 'border-color'
             }`}
           >
             {/* Day Number */}
             <div className={`text-xs sm:text-sm font-bold mb-1 sm:mb-2 ${
-              isToday ? 'text-blue-600' : 'text-gray-900'
+              isToday ? 'text-accent' : 'text-primary'
             }`}>
               {dayNumber}
             </div>
@@ -279,7 +279,7 @@ function CalendarPage() {
                   <div
                     key={task.taskId}
                     onClick={() => handleTaskClick(task)}
-                    className="px-1 sm:px-2 py-0.5 sm:py-1 rounded cursor-pointer hover:bg-gray-50 transition-colors text-xs truncate border-l-2"
+                    className="px-1 sm:px-2 py-0.5 sm:py-1 rounded cursor-pointer hover:bg-tertiary transition-colors text-xs truncate border-l-2 text-primary"
                     style={{ borderLeftColor: categoryInfo.color }}
                   >
                     {task.title}
@@ -287,7 +287,7 @@ function CalendarPage() {
                 )
               })}
               {dayTasks.length > 2 && (
-                <div className="text-xs text-gray-500 px-1 sm:px-2">
+                <div className="text-xs text-secondary px-1 sm:px-2">
                   +{dayTasks.length - 2}
                 </div>
               )}
@@ -297,7 +297,7 @@ function CalendarPage() {
       } else {
         // Empty cell for padding
         days.push(
-          <div key={i} className="bg-gray-50 rounded-lg border border-gray-100 min-h-[120px]" />
+          <div key={i} className="bg-tertiary rounded-lg border border-color min-h-[120px]" />
         )
       }
     }
@@ -307,7 +307,7 @@ function CalendarPage() {
         {/* Day Headers */}
         <div className="hidden sm:grid grid-cols-7 gap-2 mb-2">
           {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-            <div key={day} className="text-center text-sm font-medium text-gray-600 py-2">
+            <div key={day} className="text-center text-sm font-medium text-secondary py-2">
               {day}
             </div>
           ))}
@@ -442,7 +442,7 @@ function CalendarPage() {
         </div>
 
         {/* Task Count */}
-        <div className="mt-4 text-center text-sm text-gray-500">
+        <div className="mt-4 text-center text-sm text-secondary">
           {tasks.length} task{tasks.length !== 1 ? 's' : ''} in this {view}
         </div>
       </div>
