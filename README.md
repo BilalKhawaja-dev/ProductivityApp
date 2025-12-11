@@ -18,6 +18,9 @@ The Personal Productivity App is a full-stack serverless application that helps 
 
 ## 🏗️ Architecture
 
+<img width="728" height="863" alt="Productivity App drawio" src="https://github.com/user-attachments/assets/0d82bd2d-3a28-4b4e-8c84-cc5492305007" />
+
+
 ### Technology Stack
 
 **Frontend**
