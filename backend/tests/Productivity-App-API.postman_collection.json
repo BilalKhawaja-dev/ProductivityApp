@@ -32,7 +32,7 @@
     },
     {
       "key": "testPassword",
-      "value": "TestPassword123!",
+      "value": "YourTestPassword123!",
       "type": "string"
     },
     {
@@ -189,7 +189,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"{{testEmail}}\",\n  \"password\": \"WrongPassword123!\"\n}"
+              "raw": "{\n  \"email\": \"{{testEmail}}\",\n  \"password\": \"WrongTestPassword123!\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/auth/login",

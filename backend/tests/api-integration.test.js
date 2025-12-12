@@ -16,7 +16,7 @@ const http = require('http');
 // Configuration
 const API_BASE_URL = process.env.API_GATEWAY_URL || 'http://localhost:3000';
 const TEST_USER_EMAIL = `test-${Date.now()}@example.com`;
-const TEST_USER_PASSWORD = 'TestPassword123!';
+const TEST_USER_PASSWORD = 'YourTestPassword123!';
 const TEST_USER_EMAIL_2 = `test2-${Date.now()}@example.com`;
 
 // Test state
@@ -176,7 +176,7 @@ async function runTests() {
   await test('Reject login with invalid password', async () => {
     const response = await makeRequest('POST', '/auth/login', {
       email: TEST_USER_EMAIL,
-      password: 'WrongPassword123!'
+      password: 'WrongTestPassword123!'
     });
 
     if (response.statusCode !== 401) {

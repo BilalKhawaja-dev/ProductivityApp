@@ -118,9 +118,9 @@ Before committing, run this security check:
 ```bash
 # Check for exposed secrets
 grep -r "test-secret-key" .
-grep -r "981686514879" .
-grep -r "1blypvotid" .
-grep -r "d2a2hjsmnsvls" .
+grep -r "[YOUR_ACCOUNT_ID]" .
+grep -r "[YOUR_API_GATEWAY_ID]" .
+grep -r "[YOUR_CLOUDFRONT_ID]" .
 
 # Should return no results
 ```

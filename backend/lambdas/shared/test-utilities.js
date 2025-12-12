@@ -38,9 +38,9 @@ console.log('   ✓ Phone number redacted\n');
 
 // Test 4: Sanitize object with sensitive fields
 const sensitiveObject = {
-  username: 'bilal',
-  email: 'bilal@example.com',
-  password: 'secretPassword123',
+  username: 'testuser',
+  email: 'testuser@example.com',
+  password: 'yourSecretPassword123',
   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.payload.signature',
   phone: '+447123456789',
   taskTitle: 'Complete project'
