@@ -13,6 +13,9 @@ A serverless task + notes app on AWS with optional AI-generated insights (Amazon
 
 ## Architecture
 
+<img width="742" height="875" alt="image" src="https://github.com/user-attachments/assets/2128018e-c3ec-43f8-ba95-91ea677fdbe7" />
+
+
 - **Frontend**: React (Vite) on S3 + CloudFront
 - **API**: API Gateway + Lambda (Node.js)
 - **Data**: DynamoDB (single-table design)
