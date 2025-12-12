@@ -16,7 +16,7 @@ NC='\033[0m' # No Color
 API_URL="https://YOUR_API_GATEWAY_ID.execute-api.us-east-1.amazonaws.com/dev"
 CLOUDFRONT_URL="https://YOUR_CLOUDFRONT_DISTRIBUTION.cloudfront.net"
 TEST_EMAIL="test-$(date +%s)@example.com"
-TEST_PASSWORD="YourTestPassword123!"
+TEST_PASSWORD="SecureTestPass123!"
 
 # Test counters
 TESTS_PASSED=0

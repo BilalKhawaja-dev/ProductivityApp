@@ -15,7 +15,7 @@ NC='\033[0m' # No Color
 API_URL="${1:-${API_GATEWAY_URL}}"
 TEST_EMAIL="test-$(date +%s)@example.com"
 TEST_EMAIL_2="test2-$(date +%s)@example.com"
-TEST_PASSWORD="YourTestPassword123!"
+TEST_PASSWORD="SecureTestPass123!"
 
 if [ -z "$API_URL" ]; then
     echo -e "${RED}Error: API Gateway URL not provided${NC}"

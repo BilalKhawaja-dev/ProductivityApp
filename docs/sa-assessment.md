@@ -83,7 +83,7 @@ This document captures architectural decisions, risks, and what I'd change for s
 
 ## What I'd Change for Production
 
-1. **Auth**: Move to Cognito for enterprise features
+1. **Auth**: Move to Cognito for multi-tenant features
 2. **Monitoring**: Add distributed tracing (X-Ray)
 3. **Testing**: Comprehensive load testing
 4. **Security**: WAF, advanced threat protection

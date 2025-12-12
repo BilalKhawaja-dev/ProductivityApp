@@ -40,7 +40,7 @@ console.log('   ✓ Phone number redacted\n');
 const sensitiveObject = {
   username: 'testuser',
   email: 'testuser@example.com',
-  password: 'yourSecretPassword123',
+  password: 'testSecretPass123',
   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.payload.signature',
   phone: '+447123456789',
   taskTitle: 'Complete project'
