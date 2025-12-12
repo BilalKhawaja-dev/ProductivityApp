@@ -23,7 +23,7 @@ console.log('   Output:', sanitizeString(jwtString));
 console.log('   ✓ JWT token redacted\n');
 
 // Test 2: Sanitize email
-const emailString = 'User email is bilal@example.com';
+const emailString = 'User email is user@example.com';
 console.log('2. Email Sanitization:');
 console.log('   Input:', emailString);
 console.log('   Output:', sanitizeString(emailString));
@@ -53,7 +53,7 @@ console.log('   ✓ Sensitive fields redacted\n');
 // Test 5: Logger
 console.log('5. Logger Test:');
 const logger = createLogger('testFunction');
-logger.info('Test log message', { username: 'bilal', password: 'secret123' });
+logger.info('Test log message', { username: 'testuser', password: 'testpass123' });
 console.log('   ✓ Logger created and sanitizes data\n');
 
 console.log('=== Testing Error Handler ===\n');

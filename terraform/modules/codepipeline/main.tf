@@ -756,7 +756,7 @@ resource "aws_sns_topic" "infrastructure_approval" {
 resource "aws_sns_topic_subscription" "infrastructure_approval_email" {
   topic_arn = aws_sns_topic.infrastructure_approval.arn
   protocol  = "email"
-  endpoint  = "admin@example.com" # Placeholder email - update with real email
+  endpoint  = "your-email@example.com" # Placeholder email - update with real email
 }
 
 # CodePipeline for infrastructure

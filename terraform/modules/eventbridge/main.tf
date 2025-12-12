@@ -27,11 +27,11 @@ resource "aws_lambda_permission" "allow_eventbridge_recurring_tasks" {
 
 # ===== Lambda Warmer =====
 
-# EventBridge Rule: Every 5 minutes during active hours (7 AM - 11 PM UTC)
+# EventBridge Rule: Periodic Lambda warmer during active hours
 # This keeps critical Lambda functions warm to reduce cold start latency
 resource "aws_cloudwatch_event_rule" "lambda_warmer" {
   name                = "${var.environment}-lambda-warmer"
-  description         = "Invoke Lambda warmer every 5 minutes during active hours (7 AM - 11 PM UTC)"
+  description         = "Invoke Lambda warmer periodically during active hours"
   schedule_expression = "rate(5 minutes)"
 }
 
@@ -172,10 +172,10 @@ resource "aws_lambda_permission" "allow_eventbridge_warmer_toggle_task" {
 
 # ===== Weekly Report =====
 
-# EventBridge Rule: Sunday at 11 PM UTC for weekly report
+# EventBridge Rule: Weekly report generation
 resource "aws_cloudwatch_event_rule" "weekly_report" {
   name                = "${var.environment}-weekly-report"
-  description         = "Trigger generateWeeklyReport Lambda every Sunday at 11 PM UTC"
+  description         = "Trigger generateWeeklyReport Lambda weekly"
   schedule_expression = "cron(0 23 ? * SUN *)"
 }
 

@@ -22,7 +22,7 @@
     },
     {
       "key": "testEmail",
-      "value": "test@example.com",
+      "value": "your-test-email@example.com",
       "type": "string"
     },
     {

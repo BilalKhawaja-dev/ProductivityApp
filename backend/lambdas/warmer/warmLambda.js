@@ -2,7 +2,7 @@
  * Lambda Warmer Function
  * 
  * This function is invoked periodically by EventBridge to keep critical Lambda functions warm
- * and reduce cold start latency during active hours (7 AM - 11 PM).
+ * and reduce cold start latency during active hours.
  * 
  * Requirements: 10.3
  */
