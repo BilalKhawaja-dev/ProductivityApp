@@ -20,6 +20,11 @@ output "cloudfront_url" {
   value       = module.s3_cloudfront.cloudfront_url
 }
 
+output "cloudfront_distribution_id" {
+  description = "CloudFront distribution ID"
+  value       = module.s3_cloudfront.cloudfront_distribution_id
+}
+
 output "frontend_bucket_name" {
   description = "S3 bucket name for frontend"
   value       = module.s3_cloudfront.bucket_name
