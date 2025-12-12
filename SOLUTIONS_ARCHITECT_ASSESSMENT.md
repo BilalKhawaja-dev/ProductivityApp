@@ -865,7 +865,7 @@ The Personal Productivity App demonstrates a comprehensive understanding of AWS 
 
 This project demonstrates the design, implementation, and operation of production-grade serverless applications on AWS while maintaining cost efficiency and following industry best practices.
 
-**Live Demo**: https://d2a2hjsmnsvls.cloudfront.net  
+**Live Demo**: https://YOUR_CLOUDFRONT_DISTRIBUTION.cloudfront.net  
 **GitHub Repository**: https://github.com/BilalKhawaja-dev/ProductivityApp  
 **Test Credentials**: demo@example.com / Demo123!
 

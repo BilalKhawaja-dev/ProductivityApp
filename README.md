@@ -273,7 +273,7 @@ npm test                      # Jest unit tests
 
 ## 📱 Live Demo
 
-🌐 **Live Application**: [https://d2a2hjsmnsvls.cloudfront.net](https://d2a2hjsmnsvls.cloudfront.net)
+🌐 **Live Application**: [https://YOUR_CLOUDFRONT_DISTRIBUTION.cloudfront.net](https://YOUR_CLOUDFRONT_DISTRIBUTION.cloudfront.net)
 
 **Test Credentials:**
 - Email: `user@test.com`

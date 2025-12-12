@@ -13,8 +13,8 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # Configuration
-API_URL="https://1blypvotid.execute-api.us-east-1.amazonaws.com/dev"
-CLOUDFRONT_URL="https://d2a2hjsmnsvls.cloudfront.net"
+API_URL="https://YOUR_API_GATEWAY_ID.execute-api.us-east-1.amazonaws.com/dev"
+CLOUDFRONT_URL="https://YOUR_CLOUDFRONT_DISTRIBUTION.cloudfront.net"
 TEST_EMAIL="test-$(date +%s)@example.com"
 TEST_PASSWORD="TestPassword123!"
 
@@ -266,7 +266,7 @@ fi
 print_section "8. SNS NOTIFICATIONS (Requirement 5)"
 
 print_test "Checking SNS topic exists"
-if aws sns get-topic-attributes --topic-arn "arn:aws:sns:us-east-1:981686514879:dev-task-reminders" &>/dev/null; then
+if aws sns get-topic-attributes --topic-arn "arn:aws:sns:us-east-1:YOUR_ACCOUNT_ID:dev-task-reminders" &>/dev/null; then
     print_pass "SNS topic exists (Req 5.2, 5.3)"
 else
     print_fail "SNS topic not found"
