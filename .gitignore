@@ -1,8 +1,9 @@
 # Terraform
 terraform/.terraform/
 terraform/.terraform.lock.hcl
-terraform/terraform.tfstate
-terraform/terraform.tfstate.backup
+terraform/terraform.tfstate*
+terraform/terraform.tfstate.backup*
+terraform/*.tfstate*
 terraform/*.tfvars
 !terraform/terraform.tfvars.example
 terraform/.terraform.tfstate.lock.info
