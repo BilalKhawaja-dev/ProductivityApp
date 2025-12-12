@@ -19,6 +19,12 @@ variable "jwt_secret" {
   sensitive   = true
 }
 
+variable "allowed_origins" {
+  description = "Allowed CORS origins"
+  type        = string
+  default     = "*"
+}
+
 variable "sns_topic_arn" {
   description = "SNS topic ARN for notifications"
   type        = string

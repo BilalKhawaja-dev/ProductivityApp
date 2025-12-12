@@ -225,7 +225,7 @@ function createErrorResponse(statusCode, errorType, message, details = null) {
     statusCode: statusCode,
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': process.env.ALLOWED_ORIGINS || '*',
       'Access-Control-Allow-Headers': 'Content-Type,Authorization',
       'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,PATCH,OPTIONS'
     },
@@ -244,7 +244,7 @@ function createSuccessResponse(data, statusCode = 200) {
     statusCode: statusCode,
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': process.env.ALLOWED_ORIGINS || '*',
       'Access-Control-Allow-Headers': 'Content-Type,Authorization',
       'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,PATCH,OPTIONS'
     },

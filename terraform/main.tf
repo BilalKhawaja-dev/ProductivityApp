@@ -52,6 +52,7 @@ module "lambda" {
   dynamodb_table_name = module.dynamodb.table_name
   dynamodb_table_arn  = module.dynamodb.table_arn
   jwt_secret          = var.jwt_secret
+  allowed_origins     = var.allowed_origins
   sns_topic_arn       = module.sns.topic_arn
   aws_account_id      = data.aws_caller_identity.current.account_id
   aws_region          = var.aws_region

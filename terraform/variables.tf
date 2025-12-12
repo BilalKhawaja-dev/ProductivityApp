@@ -77,3 +77,8 @@ variable "use_codecommit" {
   type        = bool
   default     = false
 }
+variable "allowed_origins" {
+  description = "Allowed CORS origins for API responses"
+  type        = string
+  default     = "*"
+}
