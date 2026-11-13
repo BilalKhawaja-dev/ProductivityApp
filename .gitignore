@@ -96,3 +96,14 @@ backend/tests/TESTING_GUIDE.md
 # Misc
 *.bak
 *.tmp
+node_modules/
+.terraform/
+*.tfstate
+*.tfstate.backup
+cdk.out/
+tfplan
+tfplan.out
+*.tfplan
+lambda-package/
+__pycache__/
+*.pyc
